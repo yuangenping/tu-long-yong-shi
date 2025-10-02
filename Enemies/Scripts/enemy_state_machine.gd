@@ -21,6 +21,7 @@ func initialize ( _enemy : Enemy ) -> void:
 	
 	change_state( states[0] )
 	process_mode = Node.PROCESS_MODE_INHERIT
+	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,9 +30,15 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
+func _process( delta: float ) -> void:
+	change_state( current_state.Process( delta ) )
 	pass
+	
+
+func _physics_process( delta: float ) -> void:
+	change_state( current_state.Physics( delta ) )
+	pass
+
 
 func change_state( new_state : EnemyState ) -> void:
 	if new_state == null || new_state == current_state: return
@@ -39,3 +46,4 @@ func change_state( new_state : EnemyState ) -> void:
 	prev_state = current_state
 	current_state = new_state
 	current_state.Enter()
+	pass
