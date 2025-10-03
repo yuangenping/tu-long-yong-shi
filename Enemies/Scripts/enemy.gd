@@ -1,7 +1,9 @@
 class_name Enemy extends CharacterBody2D
 
 signal direction_changed( new_direction: Vector2 )
-signal enemy_damaged()
+signal enemy_damaged( hurt_box: HurtBox )
+signal enemy_destroyed( hurt_box: HurtBox )
+
 
 var DIR_4: Array = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
@@ -15,6 +17,7 @@ var invulnerable : bool = false
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var hit_box: HitBox = $HitBox
 @onready var enemy_state_machine: EnemyStateMachine = $EnemyStateMachine
 
 
@@ -23,6 +26,7 @@ var invulnerable : bool = false
 func _ready() -> void:
 	enemy_state_machine.initialize( self )
 	player = PlayerManager.player
+	hit_box.connect("Damaged", _task_damaged )
 	pass # Replace with function body.
 
 
@@ -36,26 +40,10 @@ func _physics_process(delta: float) -> void:
 
 func SetDirection( _new_direction : Vector2) -> bool:
 	direction = _new_direction
-	if direction == Vector2.ZERO:
+	if direction == Vector2.ZERO || _new_direction == cardinal_direction:
 		return false
-		
-	
-	
-	var direction_id : int = int( round( ( direction + cardinal_direction * 0.1 ).angle() / TAU * DIR_4.size() ) )
-	#print("cardinal_direction", cardinal_direction)
-	#print("direction_id", direction_id)
-	
-	var new_dir = DIR_4[ direction_id ]
-	
-	#if direction.y == 0:
-		#new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
-	#elif direction.x == 0:
-		#new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
-	
-	if new_dir == cardinal_direction:
-		return false
-	cardinal_direction = new_dir
-	emit_signal("direction_changed", new_dir)
+	cardinal_direction = _new_direction
+	emit_signal("direction_changed", _new_direction)
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	return true
 
@@ -70,3 +58,13 @@ func AnimDirection() -> String:
 		return "up"
 	else :
 		return "side"
+
+
+func _task_damaged( hurt_box: HurtBox ) -> void:
+	if invulnerable :
+		return
+	hp -= hurt_box.damage
+	if hp > 0 :
+		enemy_damaged.emit( hurt_box )
+	else :
+		enemy_destroyed.emit( hurt_box )

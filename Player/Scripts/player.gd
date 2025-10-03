@@ -4,20 +4,28 @@ class_name Player extends CharacterBody2D
 var cardinal_direction: Vector2 = Vector2.DOWN
 # 玩家按下键盘时,人物的朝向
 var direction: Vector2 = Vector2.ZERO
+# 无敌状态
+var invulnerable : bool = false
+var hp : int = 6
+var max_hp : int  = 6
 
 var DIR_4: Array = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var hit_box: HitBox = $HitBox
 
 signal DirectionChanged( new_direction: Vector2 )
-
+signal player_damaged( hurt_box : HurtBox )
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	PlayerManager.player = self
 	state_machine.Initalize(self)
+	hit_box.Damaged.connect( _take_damage )
+	update_hp(max_hp)
 	pass # Replace with function body.
 
 
@@ -72,3 +80,27 @@ func AnimDirection() -> String:
 	else :
 		return "side"
 	
+func _take_damage( hurt_box : HurtBox ) -> void:
+	if invulnerable :
+		return
+	update_hp( -hurt_box.damage )
+	if hp > 0 :
+		player_damaged.emit( hurt_box )
+	else :
+		player_damaged.emit( hurt_box )
+		update_hp( max_hp )
+	pass
+	
+
+func update_hp( delta : int ) -> void:
+	hp = clamp(hp + delta, 0, max_hp)
+	pass
+	
+
+func make_invulnerable( _duration : float  = 1.0 ) -> void:
+	invulnerable = true
+	hit_box.set_deferred("monitorable", false)
+	await get_tree().create_timer( _duration ).timeout
+	invulnerable = false
+	hit_box.set_deferred("monitorable", true)
+	pass

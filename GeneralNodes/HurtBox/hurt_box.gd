@@ -16,5 +16,5 @@ func _process(delta: float) -> void:
 
 func AreaEnterd( target: Area2D ) -> void:
 	if target is HitBox:
-		target.TakeDamage( damage )
+		target.TakeDamage( self )
 	pass
