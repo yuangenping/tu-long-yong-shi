@@ -6,8 +6,7 @@ var cardinal_direction: Vector2 = Vector2.DOWN
 var direction: Vector2 = Vector2.ZERO
 # 无敌状态
 var invulnerable : bool = false
-var hp : int = 6
-var max_hp : int  = 6
+
 
 var DIR_4: Array = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
@@ -25,7 +24,7 @@ func _ready() -> void:
 	PlayerManager.player = self
 	state_machine.Initalize(self)
 	hit_box.Damaged.connect( _take_damage )
-	update_hp(max_hp)
+	update_hp(PlayerManager.max_hp)
 	pass # Replace with function body.
 
 
@@ -84,16 +83,18 @@ func _take_damage( hurt_box : HurtBox ) -> void:
 	if invulnerable :
 		return
 	update_hp( -hurt_box.damage )
-	if hp > 0 :
-		player_damaged.emit( hurt_box )
-	else :
-		player_damaged.emit( hurt_box )
-		update_hp( max_hp )
+	player_damaged.emit( hurt_box )
+	#if PlayerManager.hp > 0 :
+		#player_damaged.emit( hurt_box )
+	#else :
+		#player_damaged.emit( hurt_box )
+		
 	pass
 	
 
 func update_hp( delta : int ) -> void:
-	hp = clamp(hp + delta, 0, max_hp)
+	PlayerManager.hp = clamp(PlayerManager.hp + delta, 0, PlayerManager.max_hp)
+	PlayerHud.update_hp()
 	pass
 	
 
