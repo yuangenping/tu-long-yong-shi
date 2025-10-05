@@ -64,6 +64,11 @@ func get_offset() -> Vector2:
 		offset.y = 16
 		if side == SIDE.TOP:
 			offset.y *= -1
+	print("=====================================")
+	print("player_pos", player_pos)
+	print("level_pos", global_position)
+	print("offset", offset)
+	print("=====================================")
 	return offset
 			
 
