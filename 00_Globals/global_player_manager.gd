@@ -2,6 +2,7 @@ extends Node
 
 
 const PLAYER = preload("uid://crc7qu7pjljfx")
+const PLAYER_INVENTORY_DATA = preload("uid://c1kskxxje5w3q")
 
 
 var player : Player

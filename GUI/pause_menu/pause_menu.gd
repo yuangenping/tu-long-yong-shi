@@ -6,6 +6,7 @@ signal hidden
 @onready var button_save: Button = $Control/VBoxContainer/Button_Save
 @onready var button_load: Button = $Control/VBoxContainer/Button_Load
 @onready var description: Label = $Control/Description
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var is_paused : bool = false
 
@@ -61,3 +62,8 @@ func _on_load_pressed() -> void:
 func update_item_description( new_text : String ) -> void:
 	description.text = new_text
 	pass
+
+
+func play_audio( audio: AudioStream ) -> void :
+	audio_stream_player.stream = audio
+	audio_stream_player.play()

@@ -10,6 +10,7 @@ func _ready() -> void:
 	label.text = ""
 	focus_entered.connect( item_focused )
 	focus_exited.connect( item_unfocused )
+	pressed.connect( use_item )
 	pass
 	
 func set_slot_data( value : SlotData ) -> void:
@@ -28,3 +29,9 @@ func item_focused() -> void:
 
 func item_unfocused() -> void:
 	pass
+
+func use_item() -> void:
+	if slot_data.quantity > 0 && slot_data.item_data.use()  == false :
+		return
+	slot_data.quantity -= 1
+	label.text = str( slot_data.quantity )

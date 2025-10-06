@@ -9,6 +9,7 @@ region = Rect2(64, 0, 32, 32)
 
 [resource]
 script = ExtResource("1_mndqm")
+uniqueCode = "stone"
 name = "Stone"
 description = "石头"
 texturt = SubResource("AtlasTexture_gqhqt")
