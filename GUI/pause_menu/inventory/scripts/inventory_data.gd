@@ -43,3 +43,41 @@ func slot_changed() -> void:
 		emit_changed()
 	remove_slots.clear()	
 	pass
+
+
+func get_save_data() -> Array :
+	var item_save : Array = []
+	item_save = slots.map( item_to_save )
+	return item_save
+
+
+func item_to_save( slot : SlotData ) -> Dictionary:
+	var result = {
+		item = "",
+		quanity = 0
+	}
+	
+	if slot != null:
+		result.quantity = slot.quantity
+		if slot.item_data != null:
+			result.item = slot.item_data.resource_path
+	
+	return result
+	
+func parse_save_data( save_data : Array ) -> void:
+	var new_data  := save_data.map( item_from_data ).filter( func(ele): return ele != null )
+	if new_data.is_empty() :
+		return
+	slots.clear()
+	slots.append_array( new_data )
+	pass
+
+
+func item_from_data( save_object : Dictionary ) -> SlotData:
+	if save_object.item == "" :
+		return null
+	
+	var new_slot : SlotData = SlotData.new()
+	new_slot.item_data = load( save_object.item )
+	new_slot.quantity = int( save_object.quantity )
+	return new_slot
