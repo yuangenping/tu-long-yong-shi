@@ -24,3 +24,6 @@ func HandleInput( _event: InputEvent ) -> State:
 	if _event.is_action_pressed('attack'):
 		return attack
 	return null
+
+func event_attack() -> State:
+	return attack

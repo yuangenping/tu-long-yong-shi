@@ -7,6 +7,7 @@ var current_state: State
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
+	GlobalUtil.event_attack.connect( event_attack )
 	pass # Replace with function body.
 
 
@@ -17,8 +18,9 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	ChangeState( current_state.Physics( delta ))
 
-func _unhandled_input(event: InputEvent) -> void:
-	ChangeState( current_state.HandleInput( event ) )
+func event_attack() -> void:
+	ChangeState( current_state.event_attack( ) )
+
 
 func Initalize( _player: Player ) -> void:
 	states = []

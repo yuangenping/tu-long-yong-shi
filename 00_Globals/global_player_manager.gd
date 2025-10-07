@@ -4,6 +4,9 @@ extends Node
 const PLAYER = preload("uid://crc7qu7pjljfx")
 const PLAYER_INVENTORY_DATA = preload("uid://c1kskxxje5w3q")
 
+# 交互按下信号
+signal interact_pressed
+
 
 var player : Player
 var player_spawned : bool = false

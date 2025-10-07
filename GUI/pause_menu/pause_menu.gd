@@ -16,17 +16,19 @@ func _ready() -> void:
 	hide_pause_menu()
 	button_save.pressed.connect( _on_save_pressed )
 	button_load.pressed.connect( _on_load_pressed )
+	GlobalUtil.event_pause.connect( show_or_hide_menu )
 	pass # Replace with function body.
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("pause") :
-		if is_paused == false :
-			show_pause_menu()
-		else :
-			hide_pause_menu()
-		# 防止事件继续传递，给当前按键事件标记为已处理
-		get_viewport().set_input_as_handled()
+
+
+func show_or_hide_menu() -> void:
+	if is_paused == false :
+		show_pause_menu()
+	else :
+		hide_pause_menu()
+	# 防止事件继续传递，给当前按键事件标记为已处理
+	# get_viewport().set_input_as_handled()
 	pass
 	
 func show_pause_menu() -> void:

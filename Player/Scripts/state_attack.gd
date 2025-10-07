@@ -47,12 +47,6 @@ func Process( _delta: float ) -> State:
 func Physics( _delta: float ) -> State:
 	return null
 
-func HandleInput( _event: InputEvent ) -> State:
-	#if Input.is_action_pressed('attack'):
-		#player.UpdateAnimation("attack")
-	return null
-
-
 func EndAttack( _newAniName: String ) -> void:
 	attacking = false
 	pass
