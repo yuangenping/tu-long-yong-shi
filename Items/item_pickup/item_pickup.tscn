@@ -1,12 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://0gcebmwj7ii8"]
+[gd_scene load_steps=8 format=3 uid="uid://0gcebmwj7ii8"]
 
 [ext_resource type="Script" uid="uid://clitdamv5icke" path="res://Items/item_pickup/item_pickup.gd" id="1_c8lbn"]
 [ext_resource type="AudioStream" uid="uid://bfu8wy0bcjelj" path="res://Items/item_pickup/item_pickup.wav" id="1_pjtoe"]
+[ext_resource type="Texture2D" uid="uid://doq788r40674f" path="res://Player/Sprites/Shadow.png" id="2_xobfa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_k54pr"]
 
-[node name="ItemPickup" type="Node2D"]
+[sub_resource type="Animation" id="Animation_xobfa"]
+resource_name = "drop"
+length = 1.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.6875, 0.6875), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uwxn1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Shadow:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.6875, 0.6875)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6dju"]
+_data = {
+&"RESET": SubResource("Animation_uwxn1"),
+&"drop": SubResource("Animation_xobfa")
+}
+
+[node name="ItemPickup" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 16
+motion_mode = 1
 script = ExtResource("1_c8lbn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_k54pr")
+debug_color = Color(0.9525773, 0.66224986, 0.025234712, 0.41960785)
 
 [node name="Area2D" type="Area2D" parent="."]
 
@@ -16,5 +86,18 @@ debug_color = Color(0.9525773, 0.66224986, 0.025234712, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
+[node name="Shadow" type="Sprite2D" parent="."]
+modulate = Color(0.19677323, 0.18034513, 0.18034513, 1)
+z_index = -1
+position = Vector2(-2.019484e-28, 15)
+scale = Vector2(0.6875, 0.6875)
+texture = ExtResource("2_xobfa")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_pjtoe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k6dju")
+}
+autoplay = "drop"
