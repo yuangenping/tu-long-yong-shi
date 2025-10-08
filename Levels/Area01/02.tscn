@@ -23,6 +23,8 @@ position = Vector2(239, 64)
 [node name="LevelTransition" parent="." instance=ExtResource("3_x70af")]
 position = Vector2(240, 0)
 level = "uid://du2yet4oh037c"
+id = "1"
+size = 1
 side = 2
 snap_to_grid = true
 

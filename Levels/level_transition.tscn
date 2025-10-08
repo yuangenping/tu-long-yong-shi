@@ -11,8 +11,8 @@ collision_layer = 0
 monitorable = false
 script = ExtResource("1_cut12")
 level = "<null>"
+id = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(16, 0)
 shape = SubResource("RectangleShape2D_ghk5r")
 debug_color = Color(0.25775778, 0, 0.9842577, 0.41960785)

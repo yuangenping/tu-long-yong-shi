@@ -6,7 +6,7 @@ signal level_loaded
 signal tilemap_bounds_changed( bounds : Array[ Vector2 ] )
 
 var current_tilemap_bounds : Array[ Vector2 ]
-var target_transition : String
+var transition_id : String
 var position_offset : Vector2
 
 
@@ -22,13 +22,11 @@ func ChangeTileMapBounds( bounds : Array[ Vector2 ] ) -> void:
 
 func load_new_level(
 	level_path : String,
-	_target_transition : String,
-	_position_offset : Vector2
+	_transition_id : String
 ) -> void:
 	
 	get_tree().paused = true
-	target_transition = _target_transition
-	position_offset = _position_offset
+	transition_id = _transition_id
 	
 	await SceneTransition.fade_out()
 	

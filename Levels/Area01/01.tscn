@@ -15,12 +15,14 @@ tile_map_data = PackedByteArray("AAD8//3/AgAAAAAAAAD8//7/AgAAAAAAAAD8////AgAAAAA
 position = Vector2(252, 237)
 
 [node name="LevelTransition" parent="." instance=ExtResource("3_22ele")]
-position = Vector2(245, 377)
+position = Vector2(245, 384)
 level = "uid://hp6ghm07nfvf"
-size = 3
+id = "1"
 side = 3
 
 [node name="LevelTransition2" parent="." instance=ExtResource("3_22ele")]
-position = Vector2(640, 144)
-size = 3
+position = Vector2(608, 159)
+level = "uid://1tjhj5bd3p68"
+id = "2"
 side = 1
+snap_to_grid = true

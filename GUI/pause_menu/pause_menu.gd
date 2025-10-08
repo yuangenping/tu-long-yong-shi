@@ -16,7 +16,7 @@ func _ready() -> void:
 	hide_pause_menu()
 	button_save.pressed.connect( _on_save_pressed )
 	button_load.pressed.connect( _on_load_pressed )
-	GlobalUtil.event_pause.connect( show_or_hide_menu )
+	InputManager.event_pause.connect( show_or_hide_menu )
 	pass # Replace with function body.
 
 

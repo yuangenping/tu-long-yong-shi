@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="tu_long_yong_shi"
-run/main_scene="uid://hp6ghm07nfvf"
+run/main_scene="uid://1tjhj5bd3p68"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalUtil="*res://00_Globals/global_util.gd"
+InputManager="*res://00_Globals/global_input_manager.gd"
+UtilManager="*res://00_Globals/global_util_manager.gd"
 LevelManager="*res://00_Globals/global_level_manager.gd"
 PlayerManager="*res://00_Globals/global_player_manager.gd"
 PlayerHud="*res://GUI/player_hud/player_hud.tscn"

@@ -27,3 +27,8 @@ func HandleInput( _event: InputEvent ) -> State:
 
 func event_attack() -> State:
 	return attack
+
+
+func event_interact() -> void:
+	print("idle interact")
+	pass

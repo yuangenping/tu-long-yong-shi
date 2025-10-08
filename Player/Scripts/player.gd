@@ -11,6 +11,7 @@ var invulnerable : bool = false
 var DIR_4: Array = [ Vector2.RIGHT, Vector2.DOWN, Vector2.LEFT, Vector2.UP ]
 
 @onready var state_machine: PlayerStateMachine = $StateMachine
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var effect_animation_player: AnimationPlayer = $EffectAnimationPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
@@ -32,10 +33,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
 	#direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
-	direction = GlobalUtil.get_normalized_dir()
+	direction = UtilManager.get_normalized_dir()
 	
-	
-
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 
@@ -45,16 +44,9 @@ func SetDirection() -> bool:
 		
 	var new_dir: Vector2 = cardinal_direction
 	
-	var direction_id : int = int( round( ( direction + cardinal_direction * 0.1 ).angle() / TAU * DIR_4.size() ) )
-	#print("cardinal_direction", cardinal_direction)
-	#print("direction_id", direction_id)
+	var direction_id : int = UtilManager.get_dir_index( direction, DIR_4.size(), cardinal_direction * 0.1 )
 	
 	new_dir = DIR_4[ direction_id ]
-	
-	#if direction.y == 0:
-		#new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
-	#elif direction.x == 0:
-		#new_dir = Vector2.UP if direction.y < 0 else Vector2.DOWN
 	
 	if new_dir == cardinal_direction:
 		return false
@@ -101,3 +93,7 @@ func make_invulnerable( _duration : float  = 1.0 ) -> void:
 	invulnerable = false
 	hit_box.set_deferred("monitorable", true)
 	pass
+
+
+func get_radius() -> float:
+	return collision_shape_2d.shape.radius

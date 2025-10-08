@@ -39,7 +39,7 @@ func load_game() -> void:
 	current_save = JSON.parse_string( file.get_line() ) as Dictionary
 	#print("get_save_data",current_save)
 	
-	LevelManager.load_new_level( current_save.scene_path, "", Vector2.ZERO )
+	LevelManager.load_new_level( current_save.scene_path, "" )
 	PlayerManager.PLAYER_INVENTORY_DATA.parse_save_data( current_save.items )
 	await LevelManager.level_load_started
 	

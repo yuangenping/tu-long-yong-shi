@@ -4,7 +4,8 @@ class_name  LevelTranstion extends Area2D
 enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 @export_file( "*.tscn" ) var level
-@export var target_transition_area : String = "LevelTransition"
+
+@export var id : String
 
 @export_category("Collition Area Settings")
 
@@ -29,6 +30,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	assert( id !=null, "id 不能为空")
 	_update_area()
 	# 如果处于编辑器当中
 	if Engine.is_editor_hint():
@@ -47,29 +49,23 @@ func _ready() -> void:
 
 
 func _place_player() -> void:
-	if name != LevelManager.target_transition:
+	if id != LevelManager.transition_id:
 		return 
-	PlayerManager.set_player_position( global_position + LevelManager.position_offset )
+	PlayerManager.set_player_position( get_player_new_pos() )
 
-func get_offset() -> Vector2:
-	var offset : Vector2 = Vector2.ZERO
-	var player_pos = PlayerManager.player.global_position
+func get_player_new_pos() -> Vector2:
+	var new_pos : Vector2 = Vector2.ZERO
+	var size : Vector2 = collision_shape_2d.shape.size
 	if side == SIDE.LEFT || side == SIDE.RIGHT : 
-		offset.y = player_pos.y - global_position.y
-		offset.x = 16
-		if side == SIDE.LEFT:
-			offset.x *= -1
+		new_pos.y = global_position.y 
+		new_pos.x = global_position.x + size.x if side == SIDE.LEFT else global_position.x - size.x
 	else:
-		offset.x = player_pos.x - global_position.x
-		offset.y = 16
-		if side == SIDE.TOP:
-			offset.y *= -1
+		new_pos.x = global_position.x
+		new_pos.y = global_position.y + size.y if side == SIDE.TOP else global_position.y - size.y
 	print("=====================================")
-	print("player_pos", player_pos)
-	print("level_pos", global_position)
-	print("offset", offset)
+	print("new_pos", new_pos)
 	print("=====================================")
-	return offset
+	return new_pos
 			
 
 func _update_area() -> void:
@@ -79,16 +75,16 @@ func _update_area() -> void:
 	match side:
 		SIDE.TOP:
 			new_rect.x = new_rect.x * size
-			new_position.y -= 16
+			#new_position.y -= 16
 		SIDE.BOTTOM:
 			new_rect.x = new_rect.x * size
-			new_position.y += 16
+			#new_position.y += 16
 		SIDE.LEFT:
 			new_rect.y = new_rect.y * size
-			new_position.x += 16
+			#new_position.x += 16
 		SIDE.RIGHT:
 			new_rect.y = new_rect.y * size
-			new_position.x -= 16
+			#new_position.x -= 16
 	if collision_shape_2d == null :
 		collision_shape_2d = $CollisionShape2D
 	collision_shape_2d.shape.size = new_rect
@@ -105,5 +101,5 @@ func _snap_to_grid() -> void:
 
 func _player_entered( _p : Node2D) -> void:
 	# TODO
-	LevelManager.load_new_level(level, target_transition_area , get_offset() )	
+	LevelManager.load_new_level(level, id )	
 	pass

@@ -27,3 +27,7 @@ func Physics( _delta: float ) -> State:
 
 func event_attack() -> State:
 	return null
+
+
+func event_interact() -> void:
+	pass
