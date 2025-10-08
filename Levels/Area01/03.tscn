@@ -22,7 +22,7 @@ id = "2"
 snap_to_grid = true
 
 [node name="PlayerSpawn" parent="." instance=ExtResource("3_diysa")]
-position = Vector2(209, 213)
+position = Vector2(57, 141)
 
 [node name="TreasureChest" parent="." instance=ExtResource("5_koc1c")]
 position = Vector2(138, 98)

@@ -10,6 +10,7 @@ var is_open : bool = false
 @onready var label: Label = $ItemSprite/Label
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var interact_area: Area2D = $Area2D
+@onready var is_open_data: PersistenDataHandler = $PersistentDataHandler
 
 
 func _ready() -> void:
@@ -19,8 +20,16 @@ func _ready() -> void:
 		return
 	interact_area.area_entered.connect( _on_area_entered )
 	interact_area.area_exited.connect( _on_area_exit )
+	is_open_data.data_loaded.connect( set_chest_state )
+	set_chest_state()
 	pass
 
+func set_chest_state() -> void:
+	is_open = is_open_data.value
+	if is_open:
+		animation_player.play("opened")
+	else:
+		animation_player.play("closed")
 
 func player_interact() -> void:
 	print("开始打开宝箱")
@@ -30,6 +39,7 @@ func player_interact() -> void:
 		is_open = true
 		animation_player.play("open_chest")
 		PlayerManager.PLAYER_INVENTORY_DATA.add_item( item_data, quantity )
+		is_open_data.set_value()
 	else:
 		printerr("宝箱是空的")
 		push_error("宝箱是空的2222")
