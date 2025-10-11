@@ -22,3 +22,22 @@ func get_dir_index( direction : Vector2, # 输入的方向向量
 	offset_dir : Vector2 = Vector2.ZERO # 用于调整基准方向的偏移向量
  ) -> int:
 	return int( round( ( direction + offset_dir ).angle() / TAU * dir_count ) )
+
+## 根据方向获取新的角度
+## [br]
+## [param new_dir] 输入的方向向量
+func get_new_ratation_deg_by_dir( new_dir : Vector2 ) -> float:
+	var new_deg: float = 0.0
+	match new_dir:
+		Vector2.DOWN:
+			new_deg = 0
+		Vector2.UP:
+			new_deg = 180
+		Vector2.LEFT:
+			new_deg = 90
+		Vector2.RIGHT:
+			new_deg = -90
+		_:
+			new_deg = 0
+	
+	return new_deg

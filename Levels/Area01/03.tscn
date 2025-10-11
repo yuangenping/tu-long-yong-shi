@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://1tjhj5bd3p68"]
+[gd_scene load_steps=10 format=4 uid="uid://1tjhj5bd3p68"]
 
 [ext_resource type="Script" uid="uid://d4iv6kf5cmugg" path="res://Levels/Scripts/level.gd" id="1_ryupc"]
 [ext_resource type="PackedScene" uid="uid://bodi7oij0djab" path="res://Tile Maps/grass.tscn" id="1_u4p58"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://cvcpkm5658j7e" path="res://Items/gem.tres" id="6_jvg0d"]
 [ext_resource type="Resource" uid="uid://dmod7bibtq22" path="res://Items/stone.tres" id="7_gv52n"]
 [ext_resource type="Resource" uid="uid://drhk5h0oq21ox" path="res://Items/potion.tres" id="8_crp14"]
+[ext_resource type="PackedScene" uid="uid://b3g0ncnyu2rcd" path="res://Enemies/Goblin/goblin.tscn" id="9_crp14"]
 
 [node name="03" type="Node2D"]
 script = ExtResource("1_ryupc")
@@ -36,3 +37,6 @@ quantity = 5
 [node name="TreasureChest3" parent="." instance=ExtResource("5_koc1c")]
 position = Vector2(287, 98)
 item_data = ExtResource("8_crp14")
+
+[node name="Slime" parent="." instance=ExtResource("9_crp14")]
+position = Vector2(221, 148)

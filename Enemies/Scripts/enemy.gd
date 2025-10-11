@@ -39,11 +39,12 @@ func _physics_process(delta: float) -> void:
 	
 
 func SetDirection( _new_direction : Vector2) -> bool:
-	direction = _new_direction
+	var dir_index: int = UtilManager.get_dir_index(_new_direction,DIR_4.size(), cardinal_direction * 0.1 )
+	direction = DIR_4[ dir_index ]
 	if direction == Vector2.ZERO || _new_direction == cardinal_direction:
 		return false
-	cardinal_direction = _new_direction
-	emit_signal("direction_changed", _new_direction)
+	cardinal_direction = direction
+	emit_signal("direction_changed", direction)
 	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
 	return true
 

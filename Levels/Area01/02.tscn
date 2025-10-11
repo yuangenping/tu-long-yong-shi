@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cyrf77j1gnw4d" path="res://Levels/player_spawn.tscn" id="2_wkbf4"]
 [ext_resource type="PackedScene" uid="uid://ck2xy3coxtd5p" path="res://Levels/level_transition.tscn" id="3_x70af"]
 [ext_resource type="PackedScene" uid="uid://7egbwl3u311b" path="res://Props/Plants/plant.tscn" id="5_wi5as"]
-[ext_resource type="PackedScene" uid="uid://dbprfogs7oobd" path="res://Enemies/Sprites/slime.tscn" id="6_icgqb"]
+[ext_resource type="PackedScene" uid="uid://dbprfogs7oobd" path="res://Enemies/Slime/slime.tscn" id="6_icgqb"]
 [ext_resource type="PackedScene" uid="uid://0gcebmwj7ii8" path="res://Items/item_pickup/item_pickup.tscn" id="7_icgqb"]
 [ext_resource type="Resource" uid="uid://cvcpkm5658j7e" path="res://Items/gem.tres" id="8_ua1y0"]
 [ext_resource type="Resource" uid="uid://dmod7bibtq22" path="res://Items/stone.tres" id="9_krbdk"]
