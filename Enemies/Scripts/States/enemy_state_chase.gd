@@ -4,12 +4,16 @@ class_name EnemyStateChase extends EnemyState
 
 @export var anim_name : String = "chase"
 
+## 追击速度
 @export var chase_speed : float = 20
+
+## 转向速度
 @export var turn_rate : float = 0.25
 
 @export_category("AI")
 @export var vision_area : VisionArea
 @export var attack_area : HurtBox
+## 失去视野后还继续追击多长时间
 @export var state_aggro_duration : float = 10.0
 @export var next_state : EnemyState
 
@@ -43,7 +47,7 @@ func Exit() -> void:
 	
 func Process( _delta: float ) -> EnemyState:
 	var new_dir : Vector2 = enemy.global_position.direction_to( PlayerManager.player.global_position )
-	_direction = lerp( _direction, new_dir, turn_rate )
+	_direction =   _direction.lerp( new_dir, turn_rate )
 	enemy.velocity = _direction * chase_speed
 	if enemy.SetDirection( _direction ):
 		enemy.update_animation( anim_name )
