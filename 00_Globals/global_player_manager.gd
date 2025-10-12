@@ -8,7 +8,7 @@ const PLAYER_INVENTORY_DATA = preload("uid://c1kskxxje5w3q")
 signal interact_pressed
 
 
-var player : Player
+var player : CommonCharacter
 var player_spawned : bool = false
 
 

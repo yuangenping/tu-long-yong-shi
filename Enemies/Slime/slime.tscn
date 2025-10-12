@@ -3,13 +3,13 @@
 [ext_resource type="Script" uid="uid://cjqktw4vcglxs" path="res://Enemies/Scripts/enemy.gd" id="1_rymia"]
 [ext_resource type="Texture2D" uid="uid://bbnoaedqsjtns" path="res://Enemies/Slime/Slime.png" id="1_whpm1"]
 [ext_resource type="Texture2D" uid="uid://doq788r40674f" path="res://Player/Sprites/Shadow.png" id="2_ogv3g"]
-[ext_resource type="PackedScene" uid="uid://iqe8b0gs71yx" path="res://GeneralNodes/HitBox/hit_box.tscn" id="2_rj4ws"]
+[ext_resource type="PackedScene" uid="uid://iqe8b0gs71yx" path="res://Common/Scenes/HitBox/hit_box.tscn" id="2_rj4ws"]
 [ext_resource type="AudioStream" uid="uid://3hwb7pho8gt4" path="res://Enemies/Slime/hit_01.wav" id="4_6esnc"]
 [ext_resource type="Script" uid="uid://dd8kvm7ep8iyx" path="res://Enemies/Scripts/enemy_state_machine.gd" id="4_80xf8"]
 [ext_resource type="Script" uid="uid://dhidrtfgi1ibe" path="res://Enemies/Scripts/States/enemy_state_idle.gd" id="5_q7p4o"]
 [ext_resource type="Script" uid="uid://dh4v8qxnnwg57" path="res://Enemies/Scripts/States/enemy_state_wander.gd" id="6_ayvnx"]
 [ext_resource type="AudioStream" uid="uid://cwn13khp6lwed" path="res://Enemies/Slime/hit_00.wav" id="6_eeica"]
-[ext_resource type="PackedScene" uid="uid://b635q7r0f3kdk" path="res://GeneralNodes/HurtBox/hurt_box.tscn" id="7_1c5kc"]
+[ext_resource type="PackedScene" uid="uid://b635q7r0f3kdk" path="res://Common/Scenes/HurtBox/hurt_box.tscn" id="7_1c5kc"]
 [ext_resource type="Script" uid="uid://gtvf1ev13i31" path="res://Enemies/Scripts/States/enemy_state_stun.gd" id="9_yqik2"]
 [ext_resource type="Texture2D" uid="uid://dbttillo487bv" path="res://Enemies/Slime/DestroySmoke.png" id="10_dc3kk"]
 [ext_resource type="Script" uid="uid://bv83lyburpp8" path="res://Enemies/Scripts/States/enemy_state_destroy.gd" id="12_v6t28"]
@@ -742,6 +742,7 @@ collision_mask = 16
 script = ExtResource("1_rymia")
 
 [node name="HitBox" parent="." instance=ExtResource("2_rj4ws")]
+collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-1, -8)
@@ -749,6 +750,7 @@ shape = SubResource("CircleShape2D_v6t28")
 debug_color = Color(0.70196074, 0.29600957, 0, 0.41960785)
 
 [node name="HurtBox" parent="." instance=ExtResource("7_1c5kc")]
+collision_layer = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(-1, -8)

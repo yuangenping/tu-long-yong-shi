@@ -1,7 +1,5 @@
 class_name EnemyStateIdle extends EnemyState
 
-
-
 @export var anim_name : String = "idle"
 
 @export_category("AI")
@@ -11,31 +9,26 @@ class_name EnemyStateIdle extends EnemyState
 
 var _timer : float = 0.0
 
-
-
-
 func init() -> void:
 	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
-
  
-func Enter() -> void:
-	enemy.velocity = Vector2.ZERO
+func enter() -> void:
+	character.velocity = Vector2.ZERO
 	_timer = randf_range( state_duration_min, state_duration_max )
-	enemy.update_animation( anim_name )
+	character.update_animation( anim_name )
 	pass
 	
-func Exit() -> void:
+func exit() -> void:
 	pass
 	
-func Process( _delta: float ) -> EnemyState:
+func _process_( _delta: float ) -> EnemyState:
 	_timer -= _delta
 	if _timer <= 0 : return after_idle_state
-	
 	return null
 	
-func Physics( _delta: float ) -> EnemyState:
+func _physics_process_( _delta: float ) -> EnemyState:
 	return null

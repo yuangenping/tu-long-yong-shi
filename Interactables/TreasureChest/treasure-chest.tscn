@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://clx5o7of3grlt" path="res://Interactables/TreasureChest/treasure-chest.png" id="1_j544f"]
 [ext_resource type="Texture2D" uid="uid://cwwumhqwdr1yc" path="res://Items/Sprites/items.png" id="2_1wiyq"]
 [ext_resource type="AudioStream" uid="uid://um7gdn1p601d" path="res://Interactables/TreasureChest/treasure-open.wav" id="3_avjv6"]
-[ext_resource type="PackedScene" uid="uid://dpv8exwia2kix" path="res://GeneralNodes/PersistentDataHandler/persistent_data_handler.tscn" id="5_ebwvl"]
+[ext_resource type="PackedScene" uid="uid://dpv8exwia2kix" path="res://Common/Scenes/PersistentDataHandler/persistent_data_handler.tscn" id="5_ebwvl"]
 
 [sub_resource type="Animation" id="Animation_gkxf7"]
 length = 0.001
