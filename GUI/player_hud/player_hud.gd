@@ -7,8 +7,6 @@ var hearts : Array[ HeartGUI ] = []
 
 @onready var heart_container: HFlowContainer = $Control/HeartContainer
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var heart_count = int( PlayerManager.max_hp / PlayerManager.hp_length ) + int ( PlayerManager.max_hp % PlayerManager.hp_length )
