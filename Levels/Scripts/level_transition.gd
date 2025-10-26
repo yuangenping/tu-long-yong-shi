@@ -5,6 +5,8 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 
 @export_file( "*.tscn" ) var level
 
+@export var player_posi_offset: float = 10.0
+
 @export var id : String
 
 @export_category("Collition Area Settings")
@@ -28,6 +30,7 @@ enum SIDE { LEFT, RIGHT, TOP, BOTTOM }
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	assert( id !=null, "id 不能为空")
@@ -49,7 +52,7 @@ func _ready() -> void:
 
 
 func _place_player() -> void:
-	if id != LevelManager.transition_id:
+	if id != LevelManager.prev_door_id:
 		return 
 	PlayerManager.set_player_position( get_player_new_pos() )
 
@@ -58,10 +61,10 @@ func get_player_new_pos() -> Vector2:
 	var size : Vector2 = collision_shape_2d.shape.size
 	if side == SIDE.LEFT || side == SIDE.RIGHT : 
 		new_pos.y = global_position.y 
-		new_pos.x = global_position.x + size.x if side == SIDE.LEFT else global_position.x - size.x
+		new_pos.x = global_position.x + size.x + player_posi_offset if side == SIDE.LEFT else global_position.x - size.x - player_posi_offset
 	else:
 		new_pos.x = global_position.x
-		new_pos.y = global_position.y + size.y if side == SIDE.TOP else global_position.y - size.y
+		new_pos.y = global_position.y + size.y + player_posi_offset if side == SIDE.TOP else global_position.y - size.y - player_posi_offset
 	print("=====================================")
 	print("new_pos", new_pos)
 	print("=====================================")

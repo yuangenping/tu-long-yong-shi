@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0jdyndjs6kg4"]
+
+[ext_resource type="Script" uid="uid://dat5pdbntjxjm" path="res://Common/Components/BarredDoor/Scripts/barred_door.gd" id="1_esatq"]
+[ext_resource type="Texture2D" uid="uid://d0xielwwurtlb" path="res://Assets/Imgs/dungeon_props.png" id="2_nx6xt"]
+[ext_resource type="AudioStream" uid="uid://cysamujibr77w" path="res://Assets/Audio/bars_open.wav" id="3_nx6xt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esatq"]
+size = Vector2(64, 92)
+
+[sub_resource type="Animation" id="Animation_nx6xt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_esatq"]
+resource_name = "open"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c43im"]
+_data = {
+&"RESET": SubResource("Animation_nx6xt"),
+&"open": SubResource("Animation_esatq")
+}
+
+[node name="BarredDoor" type="Node2D"]
+script = ExtResource("1_esatq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(32, -44)
+texture = ExtResource("2_nx6xt")
+hframes = 7
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(32, -46)
+shape = SubResource("RectangleShape2D_esatq")
+debug_color = Color(0.10988248, 0.77988565, 0.89374226, 0.41960785)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_c43im")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_nx6xt")

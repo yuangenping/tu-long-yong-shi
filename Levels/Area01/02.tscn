@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bodi7oij0djab" path="res://Tile Maps/grass.tscn" id="1_fyope"]
 [ext_resource type="Script" uid="uid://d4iv6kf5cmugg" path="res://Levels/Scripts/level.gd" id="1_tek06"]
-[ext_resource type="PackedScene" uid="uid://cyrf77j1gnw4d" path="res://Levels/player_spawn.tscn" id="2_wkbf4"]
+[ext_resource type="PackedScene" uid="uid://cyrf77j1gnw4d" path="res://Common/Scenes/PlayerSpawn/player_spawn.tscn" id="2_wkbf4"]
 [ext_resource type="PackedScene" uid="uid://ck2xy3coxtd5p" path="res://Levels/level_transition.tscn" id="3_x70af"]
 [ext_resource type="PackedScene" uid="uid://7egbwl3u311b" path="res://Props/Plants/plant.tscn" id="5_wi5as"]
 [ext_resource type="PackedScene" uid="uid://dbprfogs7oobd" path="res://Enemies/Slime/slime.tscn" id="6_icgqb"]
@@ -23,7 +23,7 @@ position = Vector2(239, 64)
 [node name="LevelTransition" parent="." instance=ExtResource("3_x70af")]
 position = Vector2(240, 0)
 level = "uid://du2yet4oh037c"
-id = "1"
+id = "door2"
 size = 1
 side = 2
 snap_to_grid = true

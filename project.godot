@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="tu_long_yong_shi"
-run/main_scene="uid://hp6ghm07nfvf"
+run/main_scene="uid://cbb5v2xqvjlrj"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -75,6 +75,7 @@ interact={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_2="InteractiveEle"
 2d_physics/layer_3="PlayerInteraction"
 2d_physics/layer_5="Walls"
 2d_physics/layer_9="Enemy"

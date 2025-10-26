@@ -6,7 +6,8 @@ signal level_loaded
 signal tilemap_bounds_changed( bounds : Array[ Vector2 ] )
 
 var current_tilemap_bounds : Array[ Vector2 ]
-var transition_id : String
+# 上一扇门的id
+var prev_door_id : String
 var position_offset : Vector2
 
 
@@ -22,11 +23,11 @@ func ChangeTileMapBounds( bounds : Array[ Vector2 ] ) -> void:
 
 func load_new_level(
 	level_path : String,
-	_transition_id : String
+	_prev_door_id : String
 ) -> void:
 	
 	get_tree().paused = true
-	transition_id = _transition_id
+	prev_door_id = _prev_door_id
 	
 	await SceneTransition.fade_out()
 	

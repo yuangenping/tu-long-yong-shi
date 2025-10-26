@@ -3,6 +3,8 @@ class_name  LevelTileMap extends TileMapLayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	rendering_quadrant_size = 32
+	z_index = -9 # 地图的zIndex设置为-9，使其在最底层
 	LevelManager.ChangeTileMapBounds( GetTilemapBounds() )
 	pass # Replace with function body.
 

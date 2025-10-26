@@ -15,9 +15,6 @@ func initalize(_character: CommonCharacter) -> void:
 	if states.is_empty():
 		return
 	
-	#states[0].character = _character
-	#states[0].state_machine = self
-
 	_init_call_back()
 
 	for c in states:
