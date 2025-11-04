@@ -5,9 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://ck2xy3coxtd5p" path="res://Levels/level_transition.tscn" id="2_fiocf"]
 [ext_resource type="PackedScene" uid="uid://cyrf77j1gnw4d" path="res://Common/Scenes/PlayerSpawn/player_spawn.tscn" id="3_diysa"]
 [ext_resource type="PackedScene" uid="uid://l4blutdx42sf" path="res://Interactables/TreasureChest/treasure-chest.tscn" id="5_koc1c"]
-[ext_resource type="Resource" uid="uid://cvcpkm5658j7e" path="res://Items/gem.tres" id="6_jvg0d"]
-[ext_resource type="Resource" uid="uid://dmod7bibtq22" path="res://Items/stone.tres" id="7_gv52n"]
-[ext_resource type="Resource" uid="uid://drhk5h0oq21ox" path="res://Items/potion.tres" id="8_crp14"]
+[ext_resource type="Resource" uid="uid://cvcpkm5658j7e" path="res://Common/Components/Items/gem.tres" id="6_jvg0d"]
+[ext_resource type="Resource" uid="uid://dmod7bibtq22" path="res://Common/Components/Items/stone.tres" id="7_gv52n"]
+[ext_resource type="Resource" uid="uid://drhk5h0oq21ox" path="res://Common/Components/Items/potion.tres" id="8_crp14"]
 [ext_resource type="PackedScene" uid="uid://b3g0ncnyu2rcd" path="res://Enemies/Goblin/goblin.tscn" id="9_crp14"]
 
 [node name="03" type="Node2D"]

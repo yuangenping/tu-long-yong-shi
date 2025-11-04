@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cjqktw4vcglxs" path="res://Enemies/Scripts/enemy.gd" id="1_rymia"]
 [ext_resource type="Texture2D" uid="uid://bbnoaedqsjtns" path="res://Enemies/Slime/Slime.png" id="1_whpm1"]
-[ext_resource type="Texture2D" uid="uid://doq788r40674f" path="res://Player/Sprites/Shadow.png" id="2_ogv3g"]
+[ext_resource type="Texture2D" uid="uid://doq788r40674f" path="res://Common/Components/Player/Sprites/Shadow.png" id="2_ogv3g"]
 [ext_resource type="PackedScene" uid="uid://iqe8b0gs71yx" path="res://Common/Scenes/HitBox/hit_box.tscn" id="2_rj4ws"]
 [ext_resource type="AudioStream" uid="uid://3hwb7pho8gt4" path="res://Enemies/Slime/hit_01.wav" id="4_6esnc"]
 [ext_resource type="Script" uid="uid://dd8kvm7ep8iyx" path="res://Enemies/Scripts/enemy_state_machine.gd" id="4_80xf8"]
@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://dbttillo487bv" path="res://Enemies/Slime/DestroySmoke.png" id="10_dc3kk"]
 [ext_resource type="Script" uid="uid://bv83lyburpp8" path="res://Enemies/Scripts/States/enemy_state_destroy.gd" id="12_v6t28"]
 [ext_resource type="Script" uid="uid://b0lyfwrqo4oy7" path="res://Enemies/Scripts/drop_data.gd" id="13_nljjd"]
-[ext_resource type="Resource" uid="uid://drhk5h0oq21ox" path="res://Items/potion.tres" id="14_nk1h1"]
-[ext_resource type="Resource" uid="uid://cvcpkm5658j7e" path="res://Items/gem.tres" id="15_nk1h1"]
+[ext_resource type="Resource" uid="uid://drhk5h0oq21ox" path="res://Common/Components/Items/potion.tres" id="14_nk1h1"]
+[ext_resource type="Resource" uid="uid://cvcpkm5658j7e" path="res://Common/Components/Items/gem.tres" id="15_nk1h1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v6t28"]
 radius = 15.132746

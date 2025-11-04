@@ -18,9 +18,10 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _exit_tree() -> void:
-	pressure_plate.activated.disconnect( _on_plate_actived_ )
-	pressure_plate.deactivated.disconnect( _on_plate_deactived_ )
-	animation_player.animation_finished.disconnect( _on_anime_finished_ )
+	if pressure_plate != null:
+		pressure_plate.activated.disconnect( _on_plate_actived_ )
+		pressure_plate.deactivated.disconnect( _on_plate_deactived_ )
+		animation_player.animation_finished.disconnect( _on_anime_finished_ )
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
